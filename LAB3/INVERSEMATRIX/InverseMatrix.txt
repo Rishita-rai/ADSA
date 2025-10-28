@@ -1,0 +1,29 @@
+Matrix Inverse using Gauss-Jordan Elimination in C
+
+This program computes the inverse of a square matrix using the Gauss-Jordan elimination method.
+
+Features
+
+Supports n×n square matrices (up to 10×10 by default).
+
+Handles non-singular matrices.
+
+Detects if the matrix is singular (non-invertible).
+
+Menu-free simple input-output program.
+
+
+
+Input Format
+
+First, enter the size of the square matrix (n).
+
+Then, enter n×n elements row by row.
+
+
+
+Time & Space Complexity
+
+Time Complexity: O(n³) — due to Gauss-Jordan elimination.
+
+Space Complexity: O(n²) — for storing matrix and inverse.

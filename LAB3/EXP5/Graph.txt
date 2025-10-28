@@ -1,0 +1,42 @@
+Graph Algorithms in C
+
+This program implements the following graph-related operations:
+
+Graph Input in SIF (Simple Interaction Format)
+
+Single Source Shortest Path using Dijkstra’s Algorithm
+
+All-Pairs Shortest Path using Floyd–Warshall Algorithm
+
+It uses an adjacency matrix representation and supports weighted graphs.
+
+Features
+
+Read graph edges from SIF format (e.g., A B 4)
+
+Generate adjacency matrix automatically
+
+Run Dijkstra to compute shortest path from a given source
+
+Run Floyd–Warshall to compute shortest paths between all pairs of vertices
+
+Handles INF (no edge) properly
+
+
+
+Menu Options
+--- Graph Algorithms ---
+1. Read Graph (SIF)
+2. Dijkstra (Single Source)
+3. Floyd-Warshall (All Pairs)
+4. Exit
+
+
+
+Time & Space Complexity
+
+Dijkstra: O(V^2) (matrix-based, can be optimized to O((V+E) log V) using heap)
+
+Floyd–Warshall: O(V^3)
+
+Space Complexity: O(V^2)

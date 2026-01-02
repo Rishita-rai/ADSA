@@ -1,89 +1,70 @@
 #include <stdio.h>
 #include <string.h>
-#include <stdlib.h>
+
 #define MAX 100
 
+// Function to compute LPS (Longest Prefix Suffix) array
+void computeLPSArray(char pattern[], int m, int lps[]) {
+    int length = 0;   // length of previous longest prefix suffix
+    lps[0] = 0;       // lps[0] is always 0
 
-int LCS_Length(char X[], char Y[], int m, int n, int dp[MAX][MAX]) {
-    for (int i = 0; i <= m; i++) {
-        for (int j = 0; j <= n; j++) {
-            if (i == 0 || j == 0)
-                dp[i][j] = 0;
-            else if (X[i - 1] == Y[j - 1])
-                dp[i][j] = 1 + dp[i - 1][j - 1];
-            else
-                dp[i][j] = (dp[i - 1][j] > dp[i][j - 1]) ? dp[i - 1][j] : dp[i][j - 1];
+    int i = 1;
+    while (i < m) {
+        if (pattern[i] == pattern[length]) {
+            length++;
+            lps[i] = length;
+            i++;
+        } else {
+            if (length != 0) {
+                length = lps[length - 1];
+            } else {
+                lps[i] = 0;
+                i++;
+            }
         }
     }
-    return dp[m][n];
 }
 
+// KMP pattern searching algorithm
+void KMPSearch(char text[], char pattern[]) {
+    int n = strlen(text);
+    int m = strlen(pattern);
 
-void print_LCS(char X[], char Y[], int m, int n, int dp[MAX][MAX]) {
-    int index = dp[m][n];
-    char lcs[index + 1];
-    lcs[index] = '\0'; 
+    int lps[MAX];
+    computeLPSArray(pattern, m, lps);
 
-    int i = m, j = n;
-    while (i > 0 && j > 0) {
-        if (X[i - 1] == Y[j - 1]) {
-            lcs[index - 1] = X[i - 1];
-            i--;
-            j--;
-            index--;
-        } else if (dp[i - 1][j] > dp[i][j - 1])
-            i--;
-        else
-            j--;
+    int i = 0; // index for text
+    int j = 0; // index for pattern
+
+    while (i < n) {
+        if (pattern[j] == text[i]) {
+            i++;
+            j++;
+        }
+
+        if (j == m) {
+            printf("Pattern found at index %d\n", i - j);
+            j = lps[j - 1];
+        } 
+        else if (i < n && pattern[j] != text[i]) {
+            if (j != 0)
+                j = lps[j - 1];
+            else
+                i++;
+        }
     }
-
-    printf("\nLongest Common Subsequence (LCS): %s\n", lcs);
-    printf("Length of LCS: %d\n", dp[m][n]);
 }
-
-
-void generateAllSubsequences(char *X, int m, char *Y, int n, char *res, int i, int j, int index) {
-    if (i == m || j == n) {
-        res[index] = '\0';
-        if (index > 0)
-            printf("%s\n", res);
-        return;
-    }
-
-    if (X[i] == Y[j]) {
-        res[index] = X[i];
-        generateAllSubsequences(X, m, Y, n, res, i + 1, j + 1, index + 1);
-    }
-
-    generateAllSubsequences(X, m, Y, n, res, i + 1, j, index);
-    generateAllSubsequences(X, m, Y, n, res, i, j + 1, index);
-}
-
-
-void printAllCommonSubsequences(char X[], char Y[]) {
-    int m = strlen(X);
-    int n = strlen(Y);
-    char res[MAX];
-    printf("\nAll Common Subsequences (may include duplicates):\n");
-    generateAllSubsequences(X, m, Y, n, res, 0, 0, 0);
-}
-
 
 int main() {
-    char X[MAX], Y[MAX];
-    int dp[MAX][MAX];
+    char text[MAX], pattern[MAX];
 
-    printf("Enter first string: ");
-    scanf("%s", X);
-    printf("Enter second string: ");
-    scanf("%s", Y);
+    printf("Enter the text: ");
+    scanf("%s", text);
 
-    int m = strlen(X);
-    int n = strlen(Y);
+    printf("Enter the pattern: ");
+    scanf("%s", pattern);
 
-    int length = LCS_Length(X, Y, m, n, dp);
-    print_LCS(X, Y, m, n, dp);
-    printAllCommonSubsequences(X, Y);
+    KMPSearch(text, pattern);
 
     return 0;
 }

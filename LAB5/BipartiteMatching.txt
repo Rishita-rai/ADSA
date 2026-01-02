@@ -1,0 +1,102 @@
+MAXIMUM BIPARTITE MATCHING USING DFS (KUHN’S ALGORITHM)
+
+INTRODUCTION
+
+This program implements Maximum Bipartite Matching using a Depth First Search (DFS) based approach, commonly known as Kuhn’s Algorithm.
+
+Given a bipartite graph with two disjoint sets of vertices U and V, the goal is to find the maximum number of matchings such that no two edges share a common vertex.
+
+OBJECTIVES
+
+• To represent a bipartite graph using an adjacency matrix
+• To find maximum matching using DFS-based augmenting paths
+• To understand greedy + backtracking approach
+• To display matched vertex pairs
+
+PROBLEM DEFINITION
+
+A bipartite graph is a graph whose vertices can be divided into two disjoint sets U and V such that every edge connects a vertex in U to a vertex in V.
+
+A matching is a set of edges without common vertices.
+A maximum matching is a matching with the maximum possible number of edges.
+
+ALGORITHM DESCRIPTION
+
+Step 1: Initialization
+• Initialize all vertices in set V as unmatched
+• Use an array matchV[] to store matches
+
+Step 2: DFS for Augmenting Path
+• For each vertex u in U, try to find a free vertex v in V
+• If v is already matched, attempt to re-match its partner
+• Use used[] array to avoid revisiting vertices
+
+Step 3: Matching Count
+• Each successful DFS increases the matching count
+• Continue until all vertices in U are processed
+
+PROGRAM STRUCTURE
+
+Function Name Description
+
+dfs() Finds augmenting path using DFS
+maxMatching() Computes maximum bipartite matching
+main() Takes input and prints result
+
+INPUT SPECIFICATION
+
+• First line: number of nodes in set U and set V
+• Next lines: adjacency matrix of size (U × V)
+• graph[u][v] = 1 if edge exists, otherwise 0
+
+Example Input:
+Enter number of nodes in U and V:
+3 3
+
+Adjacency Matrix:
+1 1 0
+0 1 1
+1 0 1
+
+OUTPUT SPECIFICATION
+
+• Prints the maximum number of matchings
+• Prints matched pairs in the form U -> V
+
+Example Output:
+Maximum Bipartite Matching = 3
+
+Matched pairs:
+U0 -> V1
+U1 -> V2
+U2 -> V0
+
+COMPILATION AND EXECUTION
+
+Compilation:
+gcc bipartite.c -o bipartite
+
+Execution:
+./bipartite
+
+TIME AND SPACE COMPLEXITY
+
+Time Complexity : O(V × E)
+Space Complexity : O(V + E)
+
+Where:
+V = total vertices
+E = number of edges
+
+LIMITATIONS
+
+• Uses adjacency matrix representation
+• Not optimized for very large graphs
+• DFS-based approach is slower than Hopcroft–Karp
+
+APPLICATIONS
+
+• Job assignment problems
+• Resource allocation
+• Scheduling problems
+• Matching in networks

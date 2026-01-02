@@ -1,0 +1,112 @@
+ELLIPSOID METHOD FOR LINEAR FEASIBILITY PROBLEM
+
+INTRODUCTION
+
+This program implements the Ellipsoid Method, a fundamental algorithm in convex optimization, to find a feasible solution to a system of linear inequalities of the form:
+
+A x ≤ b
+
+The algorithm iteratively updates an ellipsoid that contains the feasible region and shrinks it until a feasible point is found or a maximum number of iterations is reached.
+
+OBJECTIVES
+
+• To implement the Ellipsoid Method for linear feasibility
+• To understand ellipsoid center and shape matrix updates
+• To detect violated constraints
+• To iteratively refine the search region
+• To find a feasible solution (if one exists)
+
+PROBLEM FORMULATION
+
+Given:
+
+Matrix A ∈ R^(m×n)
+
+Vector b ∈ R^m
+
+Find a vector x ∈ R^n such that:
+
+A x ≤ b
+
+The algorithm starts with an initial ellipsoid that is guaranteed (or assumed) to contain the feasible region.
+
+ALGORITHM DESCRIPTION
+
+Step 1: Initialization
+• Choose an initial center x
+• Choose initial radius R
+• Initialize ellipsoid shape matrix P = R² I
+
+Step 2: Constraint Evaluation
+• Compute A x
+• Check if any constraint is violated
+
+Step 3: Feasibility Check
+• If no constraint is violated, x is feasible
+
+Step 4: Ellipsoid Update
+• Select a violated constraint aᵢ
+• Update center using:
+x ← x − (1/(n+1)) · (P aᵢ) / √(aᵢᵀ P aᵢ)
+
+• Update shape matrix using:
+P ← (n²/(n² − 1)) · [P − (2/(n+1)) · (P aᵢ aᵢᵀ P) / (aᵢᵀ P aᵢ)]
+
+Step 5: Iteration
+• Repeat until feasible solution is found or iteration limit is reached
+
+PROGRAM STRUCTURE
+
+Function Name Description
+
+matvec() Computes A × x
+matvec2() Computes P × a
+outer() Computes outer product
+print_vec() Prints vector
+main() Executes Ellipsoid Method
+
+INPUT SPECIFICATION
+
+• Number of variables (n)
+• Number of constraints (m)
+• Constraint matrix A (m × n)
+• Constraint vector b (m)
+• Initial center vector x (n)
+• Initial ellipsoid radius R
+
+OUTPUT SPECIFICATION
+
+• Prints intermediate ellipsoid centers (every 50 iterations)
+• Prints feasible solution when found
+• Prints failure message if no feasible point is found
+
+Example Output:
+Feasible solution found at iteration 137:
+[ 1.25000 0.75000 ]
+
+COMPILATION AND EXECUTION
+
+Compilation:
+gcc ellipsoid.c -o ellipsoid -lm
+
+Execution:
+./ellipsoid
+
+TIME AND SPACE COMPLEXITY
+
+Time Complexity : O(MAX_ITER × m × n²)
+Space Complexity : O(n² + m × n)
+
+LIMITATIONS
+
+• Finds feasibility, not optimal solution
+• Requires good initial radius
+• Numerical instability for large dimensions
+• High computational cost for large n
+
+APPLICATIONS
+
+• Convex feasibility problems
+• Linear programming theory
+• Complexity theory (theoretical importance)
+• Semidefinite and convex optimization

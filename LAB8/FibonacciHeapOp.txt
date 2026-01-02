@@ -1,0 +1,146 @@
+FIBONACCI HEAP IMPLEMENTATION IN C
+
+INTRODUCTION
+
+This program implements a Fibonacci Heap, an advanced priority queue data structure that supports several operations with amortized constant or logarithmic time complexity.
+
+Fibonacci heaps are especially useful in graph algorithms such as Dijkstra’s and Prim’s, where frequent decrease-key operations are required.
+
+OBJECTIVES
+
+• To implement a Fibonacci Heap using linked structures
+• To support insertion, deletion, and key-decrease operations
+• To understand amortized analysis of heap operations
+• To demonstrate cascading cuts and consolidation
+• To provide a menu-driven interface for heap operations
+
+DATA STRUCTURES USED
+
+• Circular doubly linked lists (for root list and child lists)
+• Tree nodes with parent–child relationships
+• Marked nodes for cascading cut mechanism
+
+Each heap node stores:
+
+key value
+
+degree (number of children)
+
+mark flag
+
+pointers to parent, child, left, and right siblings
+
+OPERATIONS SUPPORTED
+
+INSERT
+• Inserts a new key into the heap
+• Time Complexity: O(1) amortized
+
+FIND MIN
+• Returns the minimum key
+• Time Complexity: O(1)
+
+EXTRACT MIN
+• Removes and returns the minimum key
+• Consolidates trees of equal degree
+• Time Complexity: O(log n) amortized
+
+DECREASE KEY
+• Decreases the key value of a node
+• Performs cut and cascading cut if heap property is violated
+• Time Complexity: O(1) amortized
+
+DELETE
+• Deletes a node by decreasing its key to −∞ and extracting min
+• Time Complexity: O(log n) amortized
+
+DISPLAY
+• Displays all keys in the root list
+
+ALGORITHM DESCRIPTION
+
+INSERT:
+• Add new node to the root list
+• Update min pointer if required
+
+EXTRACT MIN:
+• Remove minimum node
+• Move its children to root list
+• Perform consolidation
+
+DECREASE KEY:
+• Update key value
+• Cut node if heap property is violated
+• Perform cascading cuts
+
+DELETE:
+• Decrease key to INT_MIN
+• Extract minimum
+
+PROGRAM STRUCTURE
+
+Function Name Description
+
+createNode() Creates a new heap node
+createHeap() Initializes an empty heap
+insert() Inserts a key into the heap
+extractMin() Removes minimum element
+decreaseKey() Decreases a node’s key
+deleteNode() Deletes a node
+consolidate() Merges trees of same degree
+display() Displays root list
+search() Searches for a key
+main() Menu-driven execution
+
+INPUT SPECIFICATION
+
+• User selects operations from menu
+• Keys are integer values
+
+Menu Options:
+
+Insert
+
+Find Min
+
+Extract Min
+
+Decrease Key
+
+Delete Key
+
+Display Root List
+
+Exit
+
+OUTPUT SPECIFICATION
+
+• Displays results of each operation
+• Shows minimum key when requested
+• Displays heap root list
+
+Example Output:
+Minimum: 3
+Extracted Min: 3
+Root List: 5 7 10
+
+TIME COMPLEXITY (AMORTIZED)
+
+Insert : O(1)
+Find Minimum : O(1)
+Decrease Key : O(1)
+Extract Minimum : O(log n)
+Delete : O(log n)
+
+LIMITATIONS
+
+• Memory intensive compared to binary heap
+• Search operation is linear
+• Implementation is complex and error-prone
+
+APPLICATIONS
+
+• Dijkstra’s shortest path algorithm
+• Prim’s minimum spanning tree
+• Event-driven simulations
+• Advanced priority queue systems

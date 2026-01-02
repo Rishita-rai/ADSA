@@ -1,0 +1,86 @@
+KNUTH–MORRIS–PRATT (KMP) STRING MATCHING ALGORITHM
+
+INTRODUCTION
+
+This program implements the Knuth–Morris–Pratt (KMP) string matching algorithm using the C programming language.
+
+The KMP algorithm efficiently finds all occurrences of a pattern string within a given text by avoiding unnecessary comparisons using a preprocessing step called the LPS (Longest Prefix Suffix) array.
+
+OBJECTIVES
+
+• To implement the KMP string matching algorithm
+• To understand the concept of prefix function (LPS array)
+• To efficiently search a pattern in a text
+• To reduce redundant character comparisons
+
+ALGORITHM DESCRIPTION
+
+Step 1: LPS Array Construction
+• Compute the Longest Prefix Suffix (LPS) array for the pattern
+• LPS[i] stores the length of the longest proper prefix which is also a suffix for pattern[0..i]
+
+Step 2: Pattern Matching
+• Compare characters of text and pattern
+• On match, move both indices forward
+• On mismatch, use LPS array to shift the pattern without rechecking characters
+
+Step 3: Pattern Found
+• When pattern index reaches its length, a match is found
+• Continue searching for next possible match
+
+PROGRAM STRUCTURE
+
+Function Name Description
+
+computeLPSArray() Builds the LPS array
+KMPSearch() Searches pattern in text
+main() Takes input and runs program
+
+INPUT SPECIFICATION
+
+• Input consists of two strings
+• First string is the text
+• Second string is the pattern
+• Strings should not contain spaces
+• Maximum length of each string is 100
+
+Example Input:
+ABABDABACDABABCABAB
+ABABCABAB
+
+OUTPUT SPECIFICATION
+
+• Prints starting index of each pattern occurrence in the text
+
+Example Output:
+Pattern found at index 10
+
+COMPILATION AND EXECUTION
+
+Compilation:
+gcc kmp.c -o kmp
+
+Execution:
+./kmp
+
+TIME AND SPACE COMPLEXITY
+
+Time Complexity : O(n + m)
+Space Complexity : O(m)
+
+Where:
+n = length of text
+m = length of pattern
+
+LIMITATIONS
+
+• Strings with spaces are not supported
+• Maximum string length is fixed using macro
+• Input is case-sensitive
+
+APPLICATIONS
+
+• Text searching and pattern matching
+• DNA and protein sequence analysis
+• Search engines
+• Intrusion detection systems

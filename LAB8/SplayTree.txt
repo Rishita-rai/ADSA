@@ -1,0 +1,122 @@
+SPLAY TREE IMPLEMENTATION IN C
+
+INTRODUCTION
+
+This program implements a Splay Tree, which is a self-adjusting binary search tree.
+In a splay tree, whenever a node is accessed (inserted, searched, or deleted), it is splayed to the root using tree rotations.
+
+This property ensures that frequently accessed elements stay near the root, providing amortized efficient performance.
+
+OBJECTIVES
+
+• To implement a self-adjusting binary search tree
+• To understand splaying operations (Zig, Zig-Zig, Zig-Zag)
+• To support insertion, search, and deletion
+• To analyze amortized performance of splay trees
+• To provide a menu-driven implementation
+
+DATA STRUCTURE DESCRIPTION
+
+Each node of the splay tree contains:
+
+Key value
+
+Pointer to left child
+
+Pointer to right child
+
+The tree maintains the Binary Search Tree (BST) property.
+
+SPLAY OPERATIONS
+
+ZIG (Single Rotation):
+• Applied when the accessed node is a child of the root
+
+ZIG-ZIG (Double Rotation – Same Direction):
+• Left-Left or Right-Right case
+
+ZIG-ZAG (Double Rotation – Opposite Direction):
+• Left-Right or Right-Left case
+
+These rotations move the accessed node to the root.
+
+ALGORITHM DESCRIPTION
+
+INSERT:
+• Insert key as in BST
+• Splay the inserted node to the root
+
+SEARCH:
+• Search for key
+• Splay the accessed node to the root (even if unsuccessful)
+
+DELETE:
+• Splay the key to the root
+• Remove the root
+• Join left and right subtrees
+
+INORDER TRAVERSAL:
+• Prints keys in sorted order
+
+PROGRAM STRUCTURE
+
+Function Name Description
+
+createNode() Creates a new tree node
+leftRotate() Performs left rotation
+rightRotate() Performs right rotation
+splay() Brings a node to root
+insert() Inserts a key
+search() Searches and splays a key
+delete() Deletes a key
+inorder() Inorder traversal
+main() Menu-driven execution
+
+INPUT SPECIFICATION
+
+• User selects operations from menu
+• Keys are integer values
+
+Menu Options:
+
+Insert
+
+Search
+
+Delete
+
+Inorder Traversal
+
+Exit
+
+OUTPUT SPECIFICATION
+
+• Displays status of search and delete operations
+• Displays inorder traversal
+• Displays confirmation messages
+
+Example Output:
+Found and splayed to root.
+Inorder: 10 20 30 40
+
+TIME COMPLEXITY (AMORTIZED)
+
+Search : O(log n)
+Insert : O(log n)
+Delete : O(log n)
+
+Worst Case (single operation): O(n)
+Amortized over sequence: O(log n)
+
+LIMITATIONS
+
+• Does not store parent pointers
+• Worst-case time for a single operation is linear
+• Recursive implementation may cause deep recursion
+
+APPLICATIONS
+
+• Cache and memory management
+• Self-adjusting data structures
+• Symbol tables
+• Adaptive data access systems

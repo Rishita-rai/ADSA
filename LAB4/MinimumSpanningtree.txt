@@ -1,0 +1,120 @@
+MINIMUM SPANNING TREE USING PRIM’S AND KRUSKAL’S ALGORITHMS
+
+INTRODUCTION
+
+This program implements Minimum Spanning Tree (MST) construction using two greedy algorithms:
+
+Prim’s Algorithm
+
+Kruskal’s Algorithm
+
+The program reads a weighted, undirected graph in SIF (Simple Interaction Format) and computes the MST using both algorithms, displaying the selected edges and the total cost.
+
+OBJECTIVES
+
+• To represent a graph using adjacency matrix
+• To read graph input in SIF format
+• To construct MST using Prim’s algorithm
+• To construct MST using Kruskal’s algorithm
+• To compare both greedy approaches
+
+INPUT FORMAT (SIF)
+
+The graph is entered using SIF format:
+
+Vertices are named using uppercase letters: A, B, C, …
+
+Each edge is entered as:
+u v w
+where
+u = source vertex
+v = destination vertex
+w = edge weight
+
+Input terminates with:
+-1 -1 -1
+
+Example Input:
+Enter number of vertices: 4
+
+A B 10
+A C 6
+A D 5
+B D 15
+C D 4
+-1 -1 -1
+
+ALGORITHM DESCRIPTION
+
+PRIM’S ALGORITHM:
+• Start from an arbitrary vertex
+• Select the minimum weight edge connecting MST to a new vertex
+• Repeat until all vertices are included
+
+KRUSKAL’S ALGORITHM:
+• Sort all edges by increasing weight
+• Select the smallest edge that does not form a cycle
+• Use Union-Find to detect cycles
+• Repeat until MST is complete
+
+PROGRAM STRUCTURE
+
+Function Name Description
+
+readSIF() Reads graph in SIF format
+prims() Constructs MST using Prim’s algorithm
+find() Finds parent of a node (Union-Find)
+union1() Performs union of two sets
+kruskal() Constructs MST using Kruskal’s algorithm
+main() Executes the program
+
+OUTPUT SPECIFICATION
+
+• Displays edges selected in MST using Prim’s algorithm
+• Displays total cost of MST (Prim’s)
+• Displays edges selected in MST using Kruskal’s algorithm
+• Displays total cost of MST (Kruskal’s)
+
+Example Output:
+Edges in MST using Prim’s Algorithm:
+A - D : 5
+D - C : 4
+A - B : 10
+Total cost of MST (Prim’s): 19
+
+Edges in MST using Kruskal’s Algorithm:
+C - D : 4
+A - D : 5
+A - B : 10
+Total cost of MST (Kruskal’s): 19
+
+COMPILATION AND EXECUTION
+
+Compilation:
+gcc mst.c -o mst
+
+Execution:
+./mst
+
+TIME AND SPACE COMPLEXITY
+
+Prim’s Algorithm:
+Time Complexity : O(V²)
+Space Complexity : O(V²)
+
+Kruskal’s Algorithm:
+Time Complexity : O(E × V)
+Space Complexity : O(V)
+
+LIMITATIONS
+
+• Graph size limited to MAX = 100
+• Uses adjacency matrix representation
+• Vertex naming restricted to single uppercase letters
+
+APPLICATIONS
+
+• Network design
+• Road and pipeline construction
+• Electrical circuit design
+• Clustering and optimization problems

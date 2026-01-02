@@ -1,0 +1,112 @@
+INTERIOR POINT METHOD USING LOG BARRIER FUNCTION
+
+INTRODUCTION
+
+This program implements a basic Interior Point Method for solving a linear programming problem using a logarithmic barrier function.
+
+The method converts the constrained optimization problem into a sequence of unconstrained problems by adding a barrier term that penalizes violation of non-negativity constraints and gradually reduces the barrier parameter.
+
+OBJECTIVES
+
+• To implement the Interior Point Method for linear optimization
+• To use logarithmic barrier functions for inequality constraints
+• To apply gradient descent for minimizing the barrier objective
+• To iteratively reduce the barrier parameter
+• To approximate the optimal solution
+
+PROBLEM FORMULATION
+
+The program solves the following optimization problem:
+
+Minimize
+f(x) = cᵀx
+
+Subject to:
+A x = b
+x > 0
+
+The barrier formulation becomes:
+
+f_μ(x) = cᵀx − μ Σ log(xᵢ)
+
+where μ > 0 is the barrier parameter.
+
+ALGORITHM DESCRIPTION
+
+Step 1: Initialization
+• Choose an initial strictly feasible point x > 0
+• Set initial barrier parameter μ
+
+Step 2: Barrier Objective Minimization
+• Compute gradient of the barrier objective
+• Perform gradient descent updates
+• Maintain positivity of x
+
+Step 3: Equality Constraint Handling
+• Project solution back to satisfy A x = b
+• Repeat until convergence
+
+Step 4: Barrier Reduction
+• Reduce μ by a constant factor
+• Repeat inner minimization
+
+Step 5: Termination
+• When μ becomes sufficiently small, x approximates the optimal solution
+
+PROGRAM STRUCTURE
+
+Function Name Description
+
+matvec() Computes A × x
+objective() Computes barrier objective
+gradient() Computes gradient of objective
+main() Executes Interior Point algorithm
+
+INPUT SPECIFICATION
+
+• Number of variables (n)
+• Number of equality constraints (m)
+• Constraint matrix A (m × n)
+• Constraint vector b (m)
+• Cost vector c (n)
+
+Initial point is internally chosen as x = [1, 1, ..., 1].
+
+OUTPUT SPECIFICATION
+
+• Prints intermediate solutions for each barrier iteration
+• Prints final approximate optimal solution
+• Prints approximate optimal objective value
+
+Example Output:
+Iter 10 mu = 0.03125 x = [ 1.5000 0.5000 ] f = 2.00000
+
+Optimal x ≈ [ 1.499999 0.500001 ]
+Optimal objective ≈ 2.000000
+
+COMPILATION AND EXECUTION
+
+Compilation:
+gcc interior_point.c -o interior_point -lm
+
+Execution:
+./interior_point
+
+TIME AND SPACE COMPLEXITY
+
+Time Complexity : O(iter × MAX_ITER × (n² + mn))
+Space Complexity : O(n + mn)
+
+LIMITATIONS
+
+• Uses fixed step size (may affect convergence)
+• No line search or Newton step
+• Equality constraints handled approximately
+• Suitable for educational demonstration only
+
+APPLICATIONS
+
+• Linear programming
+• Convex optimization
+• Operations Research
+• Interior point method demonstrations

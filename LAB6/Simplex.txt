@@ -1,0 +1,107 @@
+SIMPLEX METHOD FOR LINEAR PROGRAMMING (MAXIMIZATION)
+
+INTRODUCTION
+
+This program implements the Simplex Method to solve a Linear Programming Problem (LPP) for maximization using the C programming language.
+
+The Simplex algorithm is an iterative procedure used to find the optimal solution of a linear objective function subject to linear equality and inequality constraints.
+
+OBJECTIVES
+
+• To implement the Simplex method step-by-step
+• To solve maximization problems in linear programming
+• To understand pivot selection and tableau updates
+• To display intermediate simplex tables
+• To find the optimal value of the objective function
+
+PROBLEM FORMULATION
+
+The program solves problems of the form:
+
+Maximize
+Z = c1x1 + c2x2 + ... + cnxn
+
+Subject to:
+a11x1 + a12x2 + ... + a1nxn ≤ b1
+a21x1 + a22x2 + ... + a2nxn ≤ b2
+...
+am1x1 + am2x2 + ... + amnxn ≤ bm
+
+x1, x2, ..., xn ≥ 0
+
+Slack variables are added to convert inequalities into equations.
+
+ALGORITHM DESCRIPTION
+
+Step 1: Initialization
+• Construct the initial simplex tableau
+• Add slack variables
+• Convert objective function into standard form
+
+Step 2: Entering Variable Selection
+• Choose the most negative coefficient in the objective row
+
+Step 3: Leaving Variable Selection
+• Apply the minimum ratio test
+• Select pivot row
+
+Step 4: Pivot Operation
+• Divide pivot row by pivot element
+• Make all other elements in pivot column zero
+
+Step 5: Optimality Check
+• If no negative coefficient remains, optimal solution is reached
+
+PROGRAM STRUCTURE
+
+Function Name Description
+
+print_table() Prints current simplex tableau
+simplex() Performs simplex iterations
+main() Accepts input and runs algorithm
+
+INPUT SPECIFICATION
+
+• Number of variables (n)
+• Number of constraints (m)
+• Coefficients of constraint matrix A
+• Right-hand side values (b)
+• Coefficients of objective function
+
+OUTPUT SPECIFICATION
+
+• Displays simplex table for each iteration
+• Displays pivot element for each iteration
+• Displays final simplex table
+• Displays maximum value of objective function Z
+
+Example Output:
+Optimal solution reached!
+Maximum value of Z = 28.00
+
+COMPILATION AND EXECUTION
+
+Compilation:
+gcc simplex.c -o simplex
+
+Execution:
+./simplex
+
+TIME AND SPACE COMPLEXITY
+
+Time Complexity : O(iterations × variables × constraints)
+Space Complexity : O(variables × constraints)
+
+LIMITATIONS
+
+• Supports only maximization problems
+• Assumes all constraints are ≤ type
+• Limited to MAX = 10 variables/constraints
+• No handling of degeneracy or alternate optima
+
+APPLICATIONS
+
+• Operations Research
+• Resource allocation
+• Production planning
+• Transportation and scheduling problems

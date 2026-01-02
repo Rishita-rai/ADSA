@@ -1,0 +1,107 @@
+LONGEST COMMON SUBSEQUENCE (LCS) USING DYNAMIC PROGRAMMING IN C
+
+INTRODUCTION
+
+This program implements the Longest Common Subsequence (LCS) problem using Dynamic Programming in the C programming language.
+
+Given two strings, the program:
+• Computes the length of the LCS
+• Prints one valid LCS
+• Generates and prints all common subsequences (may include duplicates)
+
+The LCS problem is widely used in string matching, bioinformatics, and version control systems.
+
+OBJECTIVES
+
+• Implement LCS using dynamic programming
+• Construct DP table for optimal substructure
+• Print the LCS sequence
+• Generate all common subsequences
+• Demonstrate backtracking in DP
+
+ALGORITHM DESCRIPTION
+
+Step 1: DP Table Construction
+• Create a 2D table dp[m+1][n+1]
+• Initialize first row and column to zero
+
+Step 2: Table Filling
+• If characters match, add 1 to diagonal value
+• If characters do not match, take maximum of left and top cell
+
+Step 3: LCS Reconstruction
+• Start from dp[m][n]
+• Move diagonally for matches
+• Move in direction of maximum value otherwise
+
+Step 4: Generate All Common Subsequences
+• Recursively explore all matching and skipping paths
+• Print all subsequences (duplicates possible)
+
+PROGRAM STRUCTURE
+
+Function Name Description
+
+LCS_Length() Computes LCS length
+print_LCS() Prints one LCS
+generateAllSubsequences() Generates common subsequences
+printAllCommonSubsequences() Driver for subsequence printing
+main() Takes input and executes program
+
+INPUT SPECIFICATION
+
+• Input consists of two strings
+• Strings are read without spaces
+• Maximum string length: 100
+
+Example Input:
+ABCBDAB
+BDCAB
+
+OUTPUT SPECIFICATION
+
+• Prints the Longest Common Subsequence
+• Prints length of LCS
+• Prints all common subsequences
+
+Example Output:
+Longest Common Subsequence (LCS): BCAB
+Length of LCS: 4
+
+All Common Subsequences:
+B
+C
+BC
+BA
+...
+
+COMPILATION AND EXECUTION
+
+Compilation:
+gcc lcs.c -o lcs
+
+Execution:
+./lcs
+
+TIME AND SPACE COMPLEXITY
+
+LCS Computation:
+Time Complexity : O(m × n)
+Space Complexity : O(m × n)
+
+All Subsequences Generation:
+Time Complexity : Exponential
+Space Complexity : O(n) (recursion stack)
+
+LIMITATIONS
+
+• Duplicate subsequences may be printed
+• Strings without spaces only
+• Maximum length limited by constant MAX
+
+APPLICATIONS
+
+• DNA sequence analysis
+• File comparison tools
+• Version control systems
+• Pattern matching problems

@@ -1,0 +1,92 @@
+KNUTH–MORRIS–PRATT (KMP) STRING MATCHING ALGORITHM
+
+INTRODUCTION
+
+This program implements the Knuth–Morris–Pratt (KMP) string matching algorithm using the C programming language.
+
+KMP is an efficient pattern searching algorithm that avoids unnecessary re-comparisons by preprocessing the pattern using the LPS (Longest Prefix Suffix) array.
+
+OBJECTIVES
+
+• To implement the KMP string matching algorithm
+• To understand prefix-suffix preprocessing (LPS array)
+• To efficiently search a pattern within a text
+• To reduce redundant character comparisons
+
+ALGORITHM DESCRIPTION
+
+Step 1: LPS Array Construction
+• Compute the Longest Prefix Suffix (LPS) array for the pattern
+• LPS[i] represents the longest proper prefix which is also a suffix of pattern[0..i]
+
+Step 2: Pattern Searching
+• Compare characters of text and pattern
+• On mismatch, use LPS values to skip unnecessary comparisons
+• Continue until the entire text is scanned
+
+Step 3: Result Reporting
+• Print all starting indices where the pattern occurs
+• Print message if pattern is not found
+
+PROGRAM STRUCTURE
+
+Function Name Description
+
+buildLPS() Builds the LPS array
+KMPsearch() Searches pattern in text
+main() Accepts input and runs program
+
+INPUT SPECIFICATION
+
+• Input consists of:
+
+A text string (can contain spaces)
+
+A pattern string
+
+• Input is taken using fgets()
+
+Example Input:
+Text:
+ABABDABACDABABCABAB
+
+Pattern:
+ABABCABAB
+
+OUTPUT SPECIFICATION
+
+• Displays starting index/indices of the pattern in the text
+• Displays message if pattern is not found
+
+Example Output:
+Pattern found at index 10
+
+COMPILATION AND EXECUTION
+
+Compilation:
+gcc kmp.c -o kmp
+
+Execution:
+./kmp
+
+TIME AND SPACE COMPLEXITY
+
+Time Complexity : O(n + m)
+Space Complexity : O(m)
+
+Where:
+n = length of text
+m = length of pattern
+
+LIMITATIONS
+
+• Case-sensitive matching
+• Pattern length must be > 0
+• Uses fixed-size input buffers
+
+APPLICATIONS
+
+• Text editors and search tools
+• Search engines
+• DNA and protein sequence analysis
+• Pattern matching in strings
